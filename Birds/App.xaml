@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Birds.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="GrayColor">#0000</Color>
+            <Color x:Key="DarkHighlite">#D8EFFF</Color>
+            <Color x:Key="LightHighlite">#FFFFFE</Color>
+            <Color x:Key="DrakLightHighlite">#0000</Color>
+            <Color x:Key="TitleFontColor">#1D3C97</Color>
+            <OnPlatform x:TypeArguments="x:String" x:Key="PlayfairBold">
+                <On Platform="Android" Value="SC_DUBAI.ttf#SC_DUBAI" />
+                <On Platform="iOS" Value="PlayfairDisplay-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="PlayfairNormal">
+                <On Platform="Android" Value="PlayfairDisplay-Regular.ttf#Playfair Display Regular" />
+                <On Platform="iOS" Value="PlayfairDisplay-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="Almarai-ExtraBold.ttf#Almarai ExtraBold" />
+                <On Platform="iOS" Value="Roboto-Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Almarai-Bold.ttf#Almarai Bold" />
+                <On Platform="iOS" Value="Roboto-Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="ThinFont">
+                <On Platform="Android" Value="Almarai-Regular.ttf#Almarai" />
+                <On Platform="iOS" Value="Roboto-Thin" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
+                <On Platform="Android" Value="Almarai-Light.ttf#Almarai-Light" />
+                <On Platform="iOS" Value="Roboto-Light" />
+            </OnPlatform>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                <Setter Property="TextColor" Value="#303030" />
+
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                <Setter Property="PlaceholderColor" Value="LightGray"/>
+
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

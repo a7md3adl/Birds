@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:control="clr-namespace:Xamarin.Forms.ComboBox;assembly=Xamarin.Forms.ComboBox"
+             x:Class="Birds.Views.NewItemPage"
+             Title="Bird">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="DelMenu" Text="مسح" IconImageSource="recycle" Clicked="Cancel_Clicked" />
+        <ToolbarItem x:Name="AddMenu" Text="حفظ" IconImageSource="save" Clicked="Save_Clicked" />
+        
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+
+        <StackLayout BackgroundColor="White">
+            <Frame BackgroundColor="White" CornerRadius="2" Margin="0" Padding="0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0.40*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Frame  Margin="0" Padding="10,4"  Grid.Row="0" HeightRequest="46" BackgroundColor="#96d1ff" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Grid  BackgroundColor="#96d1ff" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.30*"/>
+                                <ColumnDefinition Width="0.30*"/>
+                                <ColumnDefinition Width="0.20*"/>
+                                <ColumnDefinition Width="0.20*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Frame Grid.Column="0" HeightRequest="40" Margin="3" Padding="0,0,0,0" BorderColor="White" BackgroundColor="AliceBlue"
+                                                            HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="5">
+
+                                <DatePicker Format="yyyy-MM-dd"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Date="{Binding BirthDate}" FontSize="Medium"  Margin="0" />
+                            </Frame>
+                            <Label Grid.Column="1" Text="تاريخ الميلاد" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource TitleFontColor}" FontSize="Medium" Margin="0,0,0,0" />
+                            <Frame  Grid.Column="2"  Margin="3" Padding="0,0,0,0" BorderColor="White" BackgroundColor="AliceBlue" HeightRequest="40"
+                                                            HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="5">
+
+                                <Entry Keyboard="Numeric" ReturnType="Next" Text="{Binding Number}" FontFamily="{StaticResource ThinFont}" Placeholder="الرقم" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" FontSize="15" />
+                            </Frame>
+                            <Label Grid.Column="3" Text="رقم" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" TextColor="{StaticResource TitleFontColor}" FontSize="Medium" Margin="0,0,10,0" />
+
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="1" Margin="0,-5,0,0" Padding="0" BackgroundColor="#FAFAFA" BorderColor="LightGray" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="5">
+                        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <RelativeLayout>
+                                <CarouselView  x:Name="cvBanners"  
+                                    IndicatorView="IndicatorViewControl"
+                                     ItemsSource="{Binding Banners}" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1 ,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent , Factor=1 ,Property=Height}"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                    
+                                    <CarouselView.ItemTemplate>
+                                        
+                                        <DataTemplate>
+                                            <RelativeLayout>
+                                                <StackLayout Padding="0,0,0,9" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1 ,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent , Factor=1 ,Property=Height}"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                    <Frame  Margin="5,5,5,0" Padding="0" BackgroundColor="WhiteSmoke" BorderColor="Transparent"
+                                                            HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="5">
+
+                                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                            <ImageButton   Source="{Binding Source}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" Command="{Binding DisplayImage}" /> 
+                                                            
+                                                        </Grid>
+                                                    </Frame>
+                                                </StackLayout>
+                                                <ImageButton  x:Name="DeleteButton" BackgroundColor="#303030" BorderColor="White" BorderWidth="1" Opacity="0.20" Source="recycle" WidthRequest="40" CornerRadius="20"   HeightRequest="40"  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-55}"  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-100}" Command="{Binding DeleteImage}" />
+                                                <Label  BackgroundColor="Transparent" TextColor="LightGray" Text="{Binding DateString}" FontSize="Small" WidthRequest="100"   HeightRequest="30"  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-45}" RelativeLayout.XConstraint="20"/>
+                                            </RelativeLayout>
+                                        </DataTemplate>
+                                    </CarouselView.ItemTemplate>
+
+                                </CarouselView>
+                                <IndicatorView  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView, ElementName=cvBanners, Property=Width, Factor=1}" HorizontalOptions="CenterAndExpand"
+                       IndicatorColor="LightGray" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-7}"
+                       SelectedIndicatorColor="{StaticResource Primary}"  IndicatorSize="5" x:Name="IndicatorViewControl" >
+
+                                </IndicatorView>
+                                <ImageButton x:Name="LogoImage" BackgroundColor="#303030" Opacity="0.20" Source="c" WidthRequest="40" CornerRadius="20"   HeightRequest="40"  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-55}" Clicked="LogoImage_Clicked" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-55}"/>
+                               
+
+                                <!--<control:ComboBox
+                            HeightRequest="30" WidthRequest="100"
+                                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-50}"  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-125}" 
+                x:Name="_comboBox1"
+                TextColor="LightGray"
+                SelectedIndexChanged="Combo1_SelectedIndexChanged"
+                BackgroundColor="Transparent"
+                                    
+                 
+                ItemsSource="{Binding Path=List, Mode=OneWay}"
+                SelectedIndex="{Binding Path=SelectedIndex, Mode=TwoWay}"
+                />-->
+                                <!--<Picker  x:Name="Gender" WidthRequest="100" TextColor="LightGray" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-55}"  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Constant=-125}" SelectedIndex="0">
+                                    <Picker.Items>
+                                        <x:String>التقط صورة</x:String>
+                                        <x:String>من المعرض</x:String>
+                                    </Picker.Items>
+                                </Picker>-->
+
+                            </RelativeLayout>
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Grid.Row="2"  Spacing="3" Padding="5,0" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid Grid.Row="0" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" Margin="0" Padding="10,0,10,0" BorderColor="#FAFAFA"
+                                                            HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="5">
+
+                                    <Entry ReturnType="Next" HorizontalTextAlignment="Center" Text="{Binding Text}" VerticalOptions="Start" Placeholder="النوع" FontSize="20" />
+                                </Frame>
+                                <RelativeLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Frame  Margin="0,0,0,5" Padding="10,0,10,0" BorderColor="#FAFAFA" HasShadow="True" CornerRadius="5" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Factor=1 ,Property=Width}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent , Factor=1 ,Property=Height}"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <ScrollView Orientation="Both"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Editor x:Name="TextView"  AutoSize="TextChanges" Visual="Material" android:Application.WindowSoftInputModeAdjust="Unspecified"  android:Entry.ImeOptions="ImeMaskAction" IsTextPredictionEnabled="True" IsSpellCheckEnabled="True" android:SwipeView.SwipeTransitionMode="Reveal" Text="{Binding Description}"  FontFamily="{StaticResource ThinFont}" PlaceholderColor="LightGray" Placeholder="ملاحظات" VerticalOptions="FillAndExpand" FontSize="16" >
+                                            <Editor.Keyboard>
+                                                <Keyboard x:FactoryMethod="Create">
+                                                    <x:Arguments>
+                                                        <KeyboardFlags>All</KeyboardFlags>
+                                                    </x:Arguments>
+                                                </Keyboard>
+                                            </Editor.Keyboard>
+                                        </Editor>
+                                    </ScrollView>
+                                </Frame>
+                                </RelativeLayout>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

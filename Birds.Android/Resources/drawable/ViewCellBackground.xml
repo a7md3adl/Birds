@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_pressed="true" >
+		<shape android:shape="rectangle">
+			<!--Change the selected color by modifying this hex value-->
+			<solid android:color="#332196F3" />
+		</shape>
+	</item>
+	<item android:state_selected="true" >
+		<shape android:shape="rectangle">
+			<!--Change the selected color by modifying this hex value-->
+			<solid android:color="#332196F3" />
+		</shape>
+	</item>
+	<item android:state_activated="true" >
+		<shape android:shape="rectangle">
+			<!--Change the selected color by modifying this hex value-->
+			<solid android:color="#EEEDf9" />
+		</shape>
+	</item>
+	<item android:state_checked="true" >
+		<shape android:shape="rectangle">
+			<!--Change the selected color by modifying this hex value-->
+			<solid android:color="#EEEDf9" />
+		</shape>
+	</item>
+
+	<item>
+		<shape android:shape="rectangle">
+			<!--Change the selected color by modifying this hex value-->
+			<solid android:color="#ffffffff" />
+		</shape>
+	</item>
+</selector>
